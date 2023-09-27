@@ -1,0 +1,37 @@
+//----------------------------//
+//-- CUSTOM ITEM SCHEMAS!!! --//
+//----------------------------//
+//
+// Holy moly! I cant believe this works! alright, this is just a completely ripped file from NOWP and im going to keep it that way so if you want and are
+// merging this mod into NOWP then you can just delete or ignore this txt file. otherwise there should be no worries of merging my mod with NOWP!
+// Everything past this point is from NOWP. I'm happy this works and im glad compatablity with other mods is now a thing!!
+//
+//-------------------------------------------------------------------------------------------------------------------------------------//
+
+	#base "items_game_tf2c.txt"											// TF2C's Original Items_Game! IF THERE'S A NEW UPDATE FOR THE GAME, PLEASE COPY THE NEW VERSION OF THEIR ITEMS_GAME OVER AND RENAME IT!! I made no other changes!
+
+// Catch-all if you just wanna add your own stuff quickly!
+	#base "custom_items/custom_items_1.txt"
+	#base "custom_items/custom_items_2.txt"
+	#base "custom_items/custom_items_3.txt"
+	#base "custom_items/custom_items_4.txt"
+	#base "custom_items/custom_items_5.txt"
+
+// Includes for other Weapons Packs / CW Mods! Add your own if you need, or let me know so I can update it!
+// IF YOU WANT TO BE ADDED TO THIS LIST / WANT NAMING SCHEMES CHANGED, AND I HAVEN'T DONE SO YET, CONTACT ME ON GB OR DISCORD!!
+	#base "custom_items/Knockout! Custom Weapons.txt"					// Knockout! Custom Weapons
+	#base "custom_items/Custom Weapons Classic.txt"						// Custom Weapons: Classic
+	#base "custom_items/TF2 UnClassic.txt"								// TF2: UnClassic
+
+	#base "custom_items/Mannly Munitions.txt"							// Mannly Munitions
+	#base "custom_items/Renaissance Revival.txt"						// Yakibomb's "Renaissance Revival"
+	#base "custom_items/Mombaes Fun-Pack.txt"							// Mombae's Fun-Pack UvU
+	#base "custom_items/Freds Fight-Starters!.txt"						// Fred's Fight-Starters!
+	#base "custom_items/Tangerine Paint's Weapons Pack.txt"				// T. Paint's Weapons Pack
+
+// NOWP
+	#base "custom_items/New-Old Weapons Pack!.txt"						// New-Old Weapons Pack - Loaded after EVERYTHING else if you wanna replace anything!
+
+"items_game"
+{
+}

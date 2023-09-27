@@ -1,0 +1,15 @@
+"custom_kill_icons"
+{
+	TextureData
+	{
+		"spinal_fantasy"
+		{
+			"dfile"		"HUD/spinal_fantasy/d"
+			"dnegfile"	"HUD/spinal_fantasy/dneg"
+			"x"			"0"
+			"y"			"0"
+			"width"		"128"
+			"height"	"32"
+		}
+	}
+}
