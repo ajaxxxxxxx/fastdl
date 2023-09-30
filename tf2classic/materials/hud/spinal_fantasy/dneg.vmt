@@ -1,0 +1,10 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "vgui\logos\spinal_fantasy_kill\dneg"
+	"$translucent"		"1"
+	"$vertexcolor"		"1"
+	"$vertexalpha"		"1"
+	"$ignorez"			"1"
+	"$no_fullbright"	1
+}
+

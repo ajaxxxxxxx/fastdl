@@ -1,0 +1,12 @@
+"VertexlitGeneric"
+{
+	"$baseTexture" "models/player/items/heavy/devils_coiffure/akuma_blu"
+	"$additive"	1
+	"$phong" "1"
+	"$phongexponent" "65"
+	"$phongfresnelranges" "[1 2 4]"
+	"$phongboost" "6"
+  
+  "$selfillum" "1"
+
+}
