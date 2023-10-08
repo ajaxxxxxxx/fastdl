@@ -2389,62 +2389,6 @@ For a more 'personal' touch to arson."															// This is a very messy fix
 			"mouse_pressed_sound"		"#ui/item_flamethrower_pickup.wav"
 			"drop_sound"				"#ui/item_heavy_gun_drop.wav"
 		}
-//----------------------------
-//----------------------------
-//--REMOTE DEPLOY PDA - 3351--
-//----------------------------
-//----------------------------
-		"3351"																					// Another unused weapon! This one lets you deploy buildings remotely, either by hitting it with a Wrench, or activating "Build" again.
-		{
-			"name"						"TF_WEAPON_REMOTEDEPLOY_PDA"
-			"prefab"					"weapon_pda"											// TO-DO: If removed, cosmetic for Jag
-			"show_in_armory"			"1"
-			"equip_region"				"belt_misc"												// Technically you can't equip this with other PDAs anyway, but hey just covering my bases here!
-
-			"item_name_color"			"204 204 250 255"
-			"item_name"					"PDA: Remote Signal"									// One of the very first (self-imposed) exceptions to the Proper-Name rule. Things that already have a type indicator before their name don't have "The ". That includes within the name - that'd be weird!
-			"item_type_name"			"Radio PDA"
-			"item_description"			"
-A handy field-radio, to coordinate with
-the folks n' manage my buildings."
-			"image_inventory"			"backpack/weapons/w_models/w_remotesignal_pda_tb"
-			"model_world"				"models/weapons/w_models/w_remotesignal_pda.mdl"		// Prior to NOWP v2.2.5, this used the Rush Order's teamcolored PDA model, but I felt that model fit more on that one.
-			"model_player"				"models/weapons/v_models/v_remotesignal_pda_engineer.mdl"	// So, I found a new model for this that ALSO looks like it could remote deploy! Hopefully it works?
-			"attach_to_hands"			"2"
-			"extra_wearable"			"models/player/items/engineer_remotesignal_pda.mdl"
-			"extra_wearable_hide_on_active"	"1"
-			"used_by_classes"
-			{
-				"engineer"				"1"
-			}
-			"attributes"
-			{
-				"pda default desc"
-				{
-					"attribute_class"	"DISPLAY_ONLY"
-					"value"				"1"
-				}
-				"pda can remote deploy"
-				{
-					"attribute_class"	"pda_remote_deploy"										// Note: Bots don't understand how this works, but generally unintentionally build their stuff anyways!
-					"value"				"1"														// ...except the Teleporters, which almost always remain in the toolbox.
-				}
-				"hide extra wearable on active"
-				{
-					"attribute_class"	"hide_extra_wearable_active"
-					"value"				"1"
-				}
-			}
-			"visuals"
-			{
-				"animation_replacement"
-				{
-					"ACT_MP_GESTURE_VC_FINGERPOINT_PDA"			"ACT_MP_ATTACK_STAND_PDA"
-				}
-			}
-			"mouse_pressed_sound"		"#ui/item_nvg_pickup.wav"
-			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
-		}
 //----------------------
 //---------------------- Former home of the Jump Pad's PDA! This is a bit of an odd case.
 //--EMPTY ENTRY - 3352-- See, when it comes to new Buildings, the Devs always mentioned using a menu to select them rather than weapons.
@@ -9524,100 +9468,6 @@ Luckily, I haven't been sober in years!"
 			}
 			"mouse_pressed_sound"		"#ui/item_wood_weapon_pickup.wav"
 			"drop_sound"				"#ui/item_wood_weapon_drop.wav"
-		}
-//---------------------------- NOTES: Makes Dispensers and Teleporters build fast.
-//---------------------------- Buildings have 127 HP (from 150). Buildings can't be upgraded. Dispenser + Teleporter cost 30% less metal to build (130 70 35)
-//--MINI BUILDINGS PDA - 3456- Dispenser generates surplus metal and do more healing. Teleporter builds as fast as a Jump Pad
-//----------------------------
-//---------------------------- When combined with the split variant, Buildings have 82 HP (from 150), Build Cost is reduced, etc
-		"3456"
-		{
-			"name"						"TF_WEAPON_MINIDEPLOY_PDA"								// Loosely inspired by something in KOCW, but may be more or less balanced - will have to see!
-			"prefab"					"weapon_pda"											// TO-DO: If removed, cosmetic for P.D.Q. (also stats merged into PDQ (also merged with Ro-Boot cosmetic))
-			"show_in_armory"			"1"
-			"equip_region"				"belt_misc"
-
-			"item_name_color"			"204 204 250 255"
-			"item_name"					"PDA: Rush Order"
-			"item_type_name"			"#TF_Weapon_PDA_Engineer_Builder"
-			"item_description"			"
-Sometimes, time just ain't on your side!
-And for that: you can do more, with less."
-			"image_inventory"			"backpack/weapons/w_models/w_mini_pda_tb"				// TF2C v2.1.0 - For this and the R. Deploy, I was thinking. They don't specifically alter only one building, so how to convey that?
-			"model_world"				"models/weapons/w_models/w_mini_pda.mdl"				// I ended up settling on having a toolbox behind them, that way it's still like the other icons, but more general to engi's buildings as a whole.
-			"model_player"				"models/weapons/v_models/v_mini_pda_engineer.mdl"
-			"extra_wearable"			"models/player/items/engineer_mini_pda.mdl"
-			"extra_wearable_hide_on_active"	"1"
-			"attach_to_hands"			"2"
-			"used_by_classes"
-			{
-				"engineer"				"1"
-			}
-			"static_attrs"
-			{
-				"pda default desc"						"1"
-				"rush order combined"					"1"
-//				"engineer dispenser build rate multiplier"	"2.5"
-//				"engineer teleporter build rate multiplier"	"3.65"
-				"dispenser rate increased"				"1.33"									// Dispensers give significantly more ammo and generate more metal per tick of those
-				// Split
-			}
-			"attributes"
-			{
-				"building cost reduction"
-				{
-					"attribute_class"	"DISPLAY_ONLY"
-					"value"				"0.7"													// The numbers here aren't perfect...
-				}
-				"buildings max level penalty"
-				{
-					"attribute_class"	"add_buildings_max_level"
-					"value"				"-2"
-				}
-				"engy building health penalty"
-				{
-					"attribute_class"	"mult_engy_building_health"
-					"value"				"0.85"
-				}
-				"hide extra wearable on active"
-				{
-					"attribute_class"	"hide_extra_wearable_active"
-					"value"				"1"
-				}
-				// Backend stuff
-				"hide_attrib_percentage"	
-				{
-					"attribute_class"	"dispenser_build_rate_multiplier"
-					"value"				"2.5"
-				}
-				"hide_attrib_percentage"	
-				{
-					"attribute_class"	"teleporter_build_rate_multiplier"						// Teleporter is MUCH faster since there's not much else they do - brings it in line with Jump Pad setup speed
-					"value"				"3.65"
-				}
-				"engy dispenser radius decreased"
-				{
-					"attribute_class"	"mult_dispenser_radius"									// You have to get really close to the Dispenser to activate healing / ammo giving actions
-					"value"				"0.67"
-				}
-				"hide_attrib_percentage"	
-				{
-					"attribute_class"	"mod_dispenser_cost"
-					"value"				"0.70"													// -30 build cost
-				}
-				"hide_attrib_percentage"	
-				{
-					"attribute_class"	"mod_teleporter_cost"
-					"value"				"0.70"													// -30 build cost
-				}
-				"hide_attrib_percentage"	
-				{
-					"attribute_class"	"mod_jumppad_cost"
-					"value"				"0.715"													// -30 build cost; Not visible unless you do some trickery with item switching
-				}
-			}
-			"mouse_pressed_sound"		"#ui/item_metal_weapon_pickup.wav"
-			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
 		}
 //------------------------
 //------------------------
@@ -20631,1153 +20481,1281 @@ does by using it for a while..."
 			"mouse_pressed_sound"		"#ui/item_bag_pickup.wav"
 			"drop_sound"				"#ui/item_bag_drop.wav"
 		}
-	}
-	"attributes"																				// CUSTOM ATTRIBUTES!! Only as of NOWP v2.5.0 with the split of items_game.txt did I feel comfy with tackling this. MOST of these will just be for text purposes and need to be spliced to work!
-	{																							// I also found out through the grapevine from azzy's attributes that you could just... put plaintext into the "description_string" part. So, that helps!
-		// Update v1.0.0																		// For now, I want to keep these relatively sparse - they're mostly just text variants for stuff that doesn't have any fitting text, or needs clarification, or has an outright positive or negative function!
-		"15000"
+	
+	
+//////QUINNZADDITIONS//////
+
+
+//-----------------------------
+//-----------------------------
+//--BATTLE ENGI WRENCH - 9072--
+//-----------------------------
+//-----------------------------
+		"9072"
 		{
-			"name"					"noise damage"
-			"description_string"	"+%s1% eardrum-shattering capacity"							// As mentioned, this is largely only display-only text, obviously this won't do anything as an attrib of its own.
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"name"						"Masterkey"						
+			"prefab"					"weapon_wrench"								
+			"show_in_armory"			"1"
+			
+			"item_quality"				"rarity3"
+			
+			"item_slot"					"melee"
+
+			"propername"				"1"
+			"item_name"					"Masterkey"
+			"item_type_name"			"#TF_Weapon_Wrench"
+			"item_description"			"
+This wrench replaces your regular Sentry Gun with a Combat Mini-Sentry Gun
+
+'I'm done playin' games with you, boy.'
+
+Weapon from: Tangerine Paint and Grunt's Weapon Addons"
+			"item_logname"				"masterkey"
+			"item_iconname"				"masterkey"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"104"
+			"image_inventory"			"backpack/weapons/w_models/w_masterkey_new"
+			"model_world"				"models/weapons/w_models/w_masterkey.mdl"					
+			"model_player"				"models/weapons/v_models/v_masterkey_engineer.mdl"		// Has another draw animation.
+			"extra_wearable"            "models/player/items/engineer/engineer_cowboy_hat.mdl"
+			"attach_to_hands"			"2"
+			"used_by_classes"
+			{
+				"engineer"			"1"
+			}
+			"static_attrs"
+			{
+				"override projectile type"				"2"
+			}
+			"attributes"
+			{
+				"max health additive bonus"
+				{
+					"attribute_class"	"add_maxhealth"
+					"value"				"25"
+				}
+				"move speed bonus"
+				{
+					"attribute_class"	"mult_player_movespeed"
+					"value"				"1.06666667"
+				}
+				"engineer sentry build rate multiplier"	
+				{
+					"attribute_class"	"sentry_build_rate_multiplier"
+					"value"				"2.5"
+				}
+				"damage penalty"
+				{
+					"attribute_class"	"mult_dmg"
+					"value"				"0.8"
+				}		
+				"crit mod disabled"
+				{
+					"attribute_class"	"mult_crit_chance"
+					"value"				"0"
+				}
+				// Attribute for custom buildings
+				"strange restriction type 1"
+				{
+					"attribute_class"	"custom_sentry_type"
+					"value" 			"1" // Mini
+				}
+			}
+			"visuals"
+			{
+				"player_bodygroups"
+				{
+					"hat"		"1"
+				}						
+			}
+			"mouse_pressed_sound"		"#ui/item_heavy_gun_pickup.wav"
+			"drop_sound"				"#ui/item_heavy_gun_drop.wav"
 		}
-		"15001"
+		
+		
+//------------------
+//------------------
+//--BUILDING HEALTH PROVIDER - 9146--
+//------------------
+//------------------
+//		"9146" // Swapped with fists to avoid recompiling plugin
+		"7000"
 		{
-			"name"					"live weapon function notif"
-			"description_string"	"Wep. functions differ slightly from Live TF2"				// Would use more often but a few weapons are already really cramped for space, this doesn't really convey new info anyway
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
+			"name"						"TF_WEAPON_BUILDING_TANKER"
+			"prefab"					"weapon_wrench"
+			"show_in_armory"			"1"
+
+			"propername"				"1"
+			"item_quality"				"rarity2"
+			
+			"item_name"					"Ironclad Construction"
+			"item_type_name"			"#TF_Weapon_Wrench"
+			"item_description"			"
+This wrench replaces your regular Sentry Gun with an Ironclad Artillery Sentry Gun
+
+They're gonna love the quality of these buildings, son.
+
+Model by: 'Wowza'
+Weapon by: 'The One Of Wonders'
+Sentry replacement by: 'rotzloeffel' 'Gadget'"	
+			"item_logname"				"wrench_tanker"
+			"item_iconname"				"wrench_tanker"
+			"image_inventory"			"backpack/weapons/c_models/c_nailbiter/c_nailbiter_new"
+			"model_world"				"models/weapons/c_models/c_nailbiter/c_nailbiter.mdl"
+			"model_player"				"models/weapons/c_models/c_nailbiter/c_nailbiter.mdl"
+			"attach_to_hands"			"1"
+			"used_by_classes"
+			{
+				"engineer"				"1"
+			}
+			"attributes"
+			{
+				"engy building health bonus"										
+				{
+					"attribute_class"	"mult_engy_building_health"
+					"value" 			"1.2"
+				}
+				"dmg bonus vs buildings"										
+				{
+					"attribute_class"	"mult_dmg_vs_buildings"
+					"value" 			"1.6"
+				}
+				"Construction rate decreased"										
+				{
+					"attribute_class"	"mult_construction_value"
+					"value" 			"0.4"
+				}
+				"Repair rate decreased"										
+				{
+					"attribute_class"	"mult_repair_value"
+					"value" 			"0.4"
+				}
+				"upgrade rate decrease"										
+				{
+					"attribute_class"	"upgrade_rate_mod"
+					"value" 			"0.5"
+				}
+				// Attribute for custom buildings
+				"strange restriction type 1"
+				{
+					"attribute_class"	"custom_sentry_type"
+					"value" 			"2" // Artillery
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_sentry_damage"
+					"value"				"1.5"
+				}	
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_sentry_firerate"
+					"value"				"1.4"
+				}	
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_sentry_turnspeed"
+					"value"				"1.33"
+				}	
+			}
+			"mouse_pressed_sound"		"#ui/item_metal_weapon_pickup.wav"
+			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
 		}
-		"15002"
+		
+//------------------
+//------------------
+//--ROBOT WRENCH - 9175--
+//------------------
+//------------------
+		"9175"
 		{
-			"name"					"minigun spin time decreased"
-			"attribute_class"		"mult_minigun_spinup_time"
-			"description_string"	"+%s1% faster spinup and spindown time"						// I tend to couple spinup and spindown attributes, so use this to convey that
+			"name"						"TF_WEAPON_WRENCH_ROBOT"
+			"prefab"					"weapon_wrench"
+			"show_in_armory"			"1"
+
+			"propername"				"1"
+			"item_quality"				"rarity2"
+			
+			"item_name"					"Heavy Support"
+			"item_type_name"			"#TF_Weapon_Wrench"
+			"item_description"			"
+This wrench replaces your regular Sentry Gun with a Heavy Lucy-Charm Sentry Gun
+
+Building cost is greatly increased and sentries will not build automatically.
+
+Well, it's a bit wild but it works just fine.
+
+Model by: 'CoBalt'
+Weapon by: 'The One Of Wonders'
+Sentry replacement by: 'Pyanodon'"	
+			"item_logname"				"wrench_robot"
+			"item_iconname"				"wrench_robot"
+			"image_inventory"			"backpack/weapons/c_models/c_toothwrench/c_toothwrench"
+			"model_world"				"models/weapons/c_models/c_toothwrench/c_toothwrench.mdl"
+			"model_player"				"models/weapons/c_models/c_toothwrench/c_toothwrench.mdl"
+			"attach_to_hands"			"1"
+			"used_by_classes"
+			{
+				"engineer"				"1"
+			}
+			"attributes"
+			{
+			    "engy building health bonus"
+				{
+					"attribute_class"	"mult_engy_building_health"
+					"value" 			"1.3333333333333333333"
+				}
+				"fire rate penalty"
+				{
+					"attribute_class"	"mult_postfiredelay"
+					"value" 			"1.15"
+				}
+				"Construction rate decreased"
+				{
+					"attribute_class"	"mult_construction_value"
+					"value" 			"0.6"
+				}
+				"Repair rate decreased"
+				{
+					"attribute_class"	"mult_repair_value"
+					"value" 			"0.4"
+				}
+				"upgrade rate decrease"
+				{
+					"attribute_class"	"upgrade_rate_mod"
+					"value" 			"0.8"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"building_cost_reduction"
+					"value" 			"1.53846153846"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"mod_teleporter_cost"
+					"value" 			"2"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"sentry_build_rate_multiplier"
+					"value" 			"0.0001"
+				}
+				// Attribute for custom buildings
+				"strange restriction type 1"
+				{
+					"attribute_class"	"custom_sentry_type"
+					"value" 			"3" // Lucycharm
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_sentry_damage"
+					"value"				"0.8"
+				}	
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_sentry_firerate"
+					"value"				"0.67"
+				}	
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_sentry_turnspeed"
+					"value"				"0.65"
+				}	
+			}
+			"mouse_pressed_sound"		"#ui/item_metal_weapon_pickup.wav"
+			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
+		}
+		
+//----------------------------
+//----------------------------
+//--MINI BUILDINGS PDA - 3456-
+//----------------------------
+//----------------------------
+		"3456"
+        {
+            "name"						"TF_WEAPON_MINIDEPLOY_PDA"								// Loosely inspired by something in KOCW, but may be more or less balanced - will have to see!
+            "prefab"					"weapon_pda"
+            "show_in_armory"			"1"
+
+			"item_quality"				"rarity3"
+			"item_name"					"PDA: Rush Order"
+			"item_type_name"			"#TF_Weapon_PDA_Engineer"
+			"item_description"			"Dispenser generates ammo + metal slowly
+-70% max building health
+
+Deploy fast-building yet fragile buildings!
+You are unable to upgrade with the Wrench
+
+Original weapon from: New Old Weapons Pack
+Edited by: 'Reagy'"
+			"image_inventory"			"backpack/weapons/w_models/w_mini_pda_new"
+			"model_world"				"models/weapons/w_models/w_mini_pda.mdl"
+			"model_player"				"models/weapons/v_models/v_mini_pda_engineer.mdl"
+			"attach_to_hands"			"2"
+			"used_by_classes"
+			{
+				"engineer"				"1"
+			}
+			"static_attrs"
+			{
+				// Sentry
+				"engineer sentry build rate multiplier" 	"2.5"				
+				// Dispenser
+				"engineer dispenser build rate multiplier" 	"2.5"
+				// Teleporter
+				"engineer teleporter build rate multiplier" "2.5"
+				// General
+				"building cost reduction" 				"0.8"									// The numbers here aren't perfect, but I can't fine-tune it to all buildings, and the next closest I found with acceptable numbers is... 50% building cost. Which is too much
+			}
+            "attributes"
+            {
+				"hand scale"
+				{
+					"attribute_class"	"mult_engy_building_health"								// Sentry and Dispenser have 100 health
+					"value"				"0.67"
+				}
+				"voice pitch scale"																// Note; It's still possible to upgrade the buildings, you just need either the Rescue Ranger or another Engineer
+				{
+					"attribute_class"	"upgrade_rate_mod"										// Even so... at max, the buildings have 144 health, so they get trampled by ANY resistance
+					"value"				"0"
+				}
+				// Attribute for custom buildings
+				"strange restriction type 1"
+				{
+					"attribute_class"	"custom_dispenser_type"
+					"value" 			"1" // Mini dispenser
+				}
+            }
+			"mouse_pressed_sound"		"#ui/item_metal_weapon_pickup.wav"
+			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
+        }
+		
+//----------------------------
+//----------------------------
+//--REMOTE DEPLOY PDA - 3351--
+//----------------------------
+//----------------------------
+		"3351"																					// Another unused weapon! This one lets you deploy buildings remotely, either by hitting it with a Wrench, or activating "Build" again.
+        {
+            "name"						"TF_WEAPON_REMOTEDEPLOY_PDA"
+            "prefab"					"weapon_pda"
+            "show_in_armory"			"1"
+
+			"item_quality"				"rarity3"
+			"item_name"					"PDA: Remote Signal"
+			"item_type_name"			"#TF_Weapon_PDA_Engineer"
+			"item_description"			"Dispenser generates ammo + metal slowly
+
+Original weapon from: New Old Weapons Pack
+Edited by: 'Reagy'"
+			"image_inventory"			"backpack/weapons/w_models/w_remotesignal_pda"			// Prior to 2.2.5, this used the Rush Order's teamcolored PDA model, but I felt that model fit more on that one.
+			"model_world"				"models/weapons/w_models/w_remotesignal_pda.mdl"		// So, I found a new model for this that ALSO looks like it could remote deploy! Hopefully it works?
+			"model_player"				"models/weapons/v_models/v_remotesignal_pda_engineer.mdl"
+			"attach_to_hands"			"2"
+			"used_by_classes"
+			{
+				"engineer"				"1"
+			}
+            "attributes"
+            {
+                "pda can remote deploy"
+                {
+                    "attribute_class"	"pda_remote_deploy"										// Note: Bots don't understand how this works, but generally unintentionally build their stuff anyways!
+                    "value"				"1"														// ...except the Teleporters, which almost always remain in the toolbox.
+                }
+				"engineer dispenser build rate multiplier"
+				{
+					"attribute_class"	"dispenser_build_rate_multiplier"
+					"value"				"3.0"
+				}
+				"engineer teleporter build rate multiplier"
+				{
+					"attribute_class"	"teleporter_build_rate_multiplier"
+					"value"				"3.0"
+				}
+				"engineer sentry build rate multiplier"										
+				{
+					"attribute_class"	"sentry_build_rate_multiplier"
+					"value" 			"2.5"
+				}
+				"torso scale"
+				{
+					"attribute_class"	"mult_dispenser_rate"									// Dispensers give significantly less ammo and generate less metal per tick of those
+					"value"				"0.5"
+				}
+            }
+			"mouse_pressed_sound"		"#ui/item_metal_weapon_pickup.wav"
+			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
+        }
+		
+//------------------------
+//------------------------
+//--IN-HOUSE PDA - 9141----
+// V5.6r1 Removed no-working sentry range, added additional stats to description
+//------------------------
+//------------------------
+		"9141"																
+		{
+			"name"						"TF_WEAPON_PDA_SPECIALIZED"
+			"prefab"					"weapon_pda"
+			"show_in_armory"			"1"
+			
+			"item_quality"				"rarity2"
+			"item_logname"				"pda_specialist"
+			
+			"propername"				"1"
+			"item_name"					"PDA: Hardware Specialist"
+			"item_type_name"			"#TF_Weapon_PDA_Engineer"
+			"item_description"			"20% Dispenser restock bonus
+50% Dispenser healing bonus
+20% Building health penalty
+
+Buildings are upgraded faster and cost less to build
+
+Well, looks like I'm the real Engineer around here.
+
+Model by: 'MrFunreal'
+Weapon by: 'The One Of Wonders'"
+			"image_inventory"			"backpack/weapons/c_models/c_specialbuildtool/c_specialbuildtool"
+			"model_world"				"models/weapons/c_models/c_specialbuildtool/c_specialbuildtool.mdl"
+			"model_player"				"models/weapons/c_models/c_specialbuildtool/c_specialbuildtool.mdl"
+			"attach_to_hands"			"1"
+			"used_by_classes"
+			{
+				"engineer"				"1"
+			}
+			"attributes"
+			{
+				"engineer dispenser build rate multiplier"
+				{
+					"attribute_class"	"dispenser_build_rate_multiplier"
+					"value"				"1.35"
+				}
+				"engineer teleporter build rate multiplier"
+				{
+					"attribute_class"	"teleporter_build_rate_multiplier"
+					"value"				"1.35"
+				}
+				"engineer sentry build rate multiplier"
+				{
+					"attribute_class"	"sentry_build_rate_multiplier"
+					"value"				"1.35"
+				}
+				"engy dispenser radius increased"
+				{
+					"attribute_class"	"mult_dispenser_radius"
+					"value"				"1.75"
+				}
+				"strange restriction type 1"
+				{
+					"attribute_class"	"building_cost_reduction"
+					"value"				"-20"
+				}
+				"Repair rate increased"
+				{
+					"attribute_class"	"mult_repair_value"
+					"value"				"1.2"
+				}
+				"Construction rate decreased"
+				{
+					"attribute_class"	"mult_construction_value"
+					"value"				"0.15"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"mult_engy_building_health"
+					"value"				"0.8"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"mod_teleporter_cost"
+					"value"				"0.6"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"upgrade_rate_mod"
+					"value"				"1.33"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"mult_dispenser_rate"
+					"value"				"1.2"
+				}
+				"voice pitch scale"
+				{
+					"attribute_class"	"custom_dispenser_healrate"
+					"value"				"1.5"
+				}
+			}
+			"mouse_pressed_sound"		"#ui/item_metal_weapon_pickup.wav"
+			"drop_sound"				"#ui/item_metal_weapon_drop.wav"
+		}
+		
+//------------------------
+//------------------------
+//--Remote Sap Test - 9185--
+//------------------------
+//------------------------
+		"9185"
+		{
+			"name"						"TF_WEAPON_BUILDER_SPY_TEST"
+			"prefab"					"weapon_sapper"
+			"item_class"				"tf_weapon_sapper"
+			"item_slot"					"building"
+
+			"image_inventory"			"backpack/weapons/c_models/c_remotesap"
+			"image_inventory_size_w"	"128"
+			"image_inventory_size_h"	"82"
+
+			"show_in_armory"			"1"
+			"item_quality"				"rarity2"
+
+			"item_name"					"Intermission"
+			"item_type_name"			"Remote Sapper"
+			"item_description"			"Disables buildings for a short amount of time when thrown
+Drains cloak when in proximity
+
+Yeet Me: Press R to throw
+
+Model by: 'wowza'
+Cosmetic by: 'blueNES' 'YeetGod'
+Weapon by: 'Reagy'"
+			"item_logname"				"intermission"
+			"item_iconname"				"intermission"
+			"model_world"				"models/weapons/c_models/c_remotesap/c_remotesap.mdl"
+			"model_player"				"models/weapons/c_models/c_remotesap/c_remotesap.mdl"
+			"extra_wearable" 			"models/workshop/player/items/spy/stylish_satchel/stylish_satchel.mdl"
+			"attach_to_hands"			"1"
+			"used_by_classes"
+			{
+				"spy"				"1"
+			}
+			"attributes"
+			{
+				"sapper health penalty"											
+				{
+					"attribute_class"	"mult_sapper_health"
+					"value"				"0.25"
+				}
+			}
+		}
+	
+	
+	"attributes"
+	{
+// Knockout Custom Attributes
+		"7500"
+		{
+			"name"	"damage force reduction HIDDEN"
+			"attribute_class"	"damage_force_reduction"
+			"description_string"	"#Attrib_DamageForceReduction"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"7501"
+		{
+			"name"	"airblast vulnerability multiplier HIDDEN"
+			"attribute_class"	"airblast_vulnerability_multiplier"
+			"description_string"	"#Attrib_AirBlastVulnerabilityMultipier"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"7502"
+		{
+			"name"	"dmg taken from crit reduced HIDDEN"
+			"attribute_class"	"mult_dmgtaken_from_crit"
+			"description_string"	"#Attrib_DmgTaken_From_Crit_Reduced"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"armory_Desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
-		"15003"
+		"7503"
 		{
-			"name"					"minigun spin time increased"
-			"attribute_class"		"mult_minigun_spinup_time"
-			"description_string"	"%s1% slower spinup and spindown time"
+			"name"	"dmg taken from crit increased HIDDEN"
+			"attribute_class"	"mult_dmgtaken_from_crit"
+			"description_string"	"#Attrib_DmgTaken_From_Crit_Increased"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"armory_Desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
-		"15004"
+		"7504"
 		{
-			"name"					"hat no tactical advantage"
-			"description_string"	"Hat has no tactical advantage whatsoever"					// I am putting this on every single hat
+			"name"	"boots falling stomp HIDDEN"
+			"attribute_class"	"boots_falling_stomp"
+			"description_string"	"#Attrib_BootsFallingStomp"
 			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"1"
 		}
-		"15005"
+		
+// Fred's Attributes
+		"9901"
 		{
-			"name"					"dragons fury fireballs"
-			"description_string"	"Fires explosive fireballs"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15006"
-		{
-			"name"					"humiliation rate increased"
-			"description_string"	"+%s1% higher humiliation rate"
+			"name"	"bullets per shot penalty"
+			"attribute_class"	"mult_bullets_per_shot"
+			"description_string"	"#Attrib_BulletsPerShot_Penalty"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15007"
+		"9902"
 		{
-			"name"					"crit_kill_effect_gib"
-			"attribute_class"		"mod_melee_crit_swing_custom_damage"
-			"description_string"	"On Crit-Kill: Turn enemies into a pile of gibs!"
+			"name"	"tranq frost"
+			"attribute_class"	"mod_tranq_onhit"
+			"description_string"	"#Attrib_TranqFrost"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15008"
+		"9903"
 		{
-			"name"					"crit_kill_effect_decap"
-			"attribute_class"		"mod_melee_crit_swing_custom_damage"
-			"description_string"	"On Crit-Kill: Decapitate your enemies!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15009"
-		{
-			"name"					"self mfd short"
-			"attribute_class"		"self_mark_for_death"
-			"description_string"	"Marked for death while active (and %s1s after)"			// It pisses me off that the MfD attribute's text spans like 3 lines for no reason at all, it can be conveyed in ONE
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15010"
-		{
-			"name"					"air mobility increased"
-			"description_string"	"+%s1% increased mobility in the air"
+			"name"	"damage penalty vs burning"
+			"attribute_class"	"mult_dmg_vs_burning"
+			"description_string"	"#Attrib_DmgPenaltyVsBurning"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15011"
+		"9904"
 		{
-			"name"					"jarate jump"
-			"description_string"	"+%s1% Jarate-jumping mastery"
+			"name"	"keep disguise KNIFE"
+			"attribute_class"	"set_keep_disguise"
+			"description_string"	"#Attrib_KeepDisguiseKnife"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"1"
+		}
+		"9905"
+		{
+			"name"	"move speed penalty while cloaked"
+			"attribute_class"	"mult_player_movespeed_cloaked"
+			"description_string"	"#Attrib_MoveSpeed_Penalty_Cloaked"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"armory_Desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
-		"15012"
+		"9906"
 		{
-			"name"					"speed on kill with time"
-			"description_string"	"On Kill: Gain a speed boost for %s1 seconds"				// The speed text does work, it's just annoying how they don't list effect duration at all
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15013"
-		{
-			"name"					"speed on hit with time"
-			"description_string"	"On Hit: Gain a speed boost for %s1 seconds"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15014"
-		{
-			"name"					"mfd short desc"
-			"description_string"	"On Hit: Inflict marked for death on targets,
-any damage dealt will mini-crit!"																// Rewrite to reflect TF2C's properties, also just more concise
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15015"
-		{
-			"name"					"mfd short time"
-			"description_string"	"On Hit: Inflict marked for death for %s1s"					// Useful for when MfD timing is important
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15016"
-		{
-			"name"					"outline target text"
-			"attribute_class"		"outline_on_hit"
-			"description_string"	"Mark enemies with an outline for %s1s"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15017"
-		{
-			"name"					"loadout item disables primary"
-			"description_string"	"Cannot use a Primary weapon while active"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15018"
-		{
-			"name"					"loadout item disables secondary"
-			"description_string"	"Cannot use Secondary weapon while active"					// Slightly different grammar but it just barely lets it fit onto a single line
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15019"
-		{
-			"name"					"loadout item disables melee"
-			"description_string"	"Cannot use a Melee weapon while active"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15020"
-		{
-			"name"					"self mfd swing"
-			"description_string"	"On Swing: Mark yourself for Death! (%s1s)"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15021"
-		{
-			"name"					"no baseballs"
-			"description_string"	"Cannot pitch or launch baseballs"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15022"
-		{
-			"name"					"construct on hit enemy text"
-			"attribute_class"		"add_onhit_construction"
-			"description_string"	"On Hit Enemy: All active buildings get some
-upgrade + repair progress if able"																// It was tricky summing this up in only 2 lines, but hopefully this works well!
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15023"
-		{
-			"name"					"damage pierce resistances"
-			"attribute_class"		"mod_pierce_resists_absorbs"
-			"description_string"	"Attacks pierce damage resistance
-effects and bonuses"													
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15024"
-		{
-			"name"					"bodydouble transform text"
-			"attribute_class"		"mod_onhit_copy_victim"
-			"description_string"	"On Hit Enemy: Rapidly transform into their
-Class and copy their weapons on the spot"														// Also very tricky to sum up concisely
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15025"
-		{
-			"name"					"dna transform debuff"
-			"description_string"	"Transformations start with reduced health"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		// Update v1.5.0
-		"15026"
-		{
-			"name"					"cleaver desc simple"
-			"description_string"	"Throw at enemies to make them bleed!"						// Shorter-form desc since the mini-crit thing isn't true for any version of the Cleaver, even Live's, right now
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15027"
-		{
-			"name"					"airblast vulnerability decreased"
-			"attribute_class"		"airblast_vulnerability_multiplier"
-			"description_string"	"%s1% reduction in airblast vulnerability"
+			"name"	"dmg bonus vs players"
+			"attribute_class"	"mult_dmg_vs_players"
+			"description_string"	"#Attrib_DmgVsPlayer_Increased"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15028"
+		"9907"
 		{
-			"name"					"airblast vulnerability increased"
-			"attribute_class"		"airblast_vulnerability_multiplier"
-			"description_string"	"+%s1% increased airblast vulnerability"
+			"name"	"no cloak"
+			"attribute_class"	"mult_cloak_rate"
+			"description_string"	"#Attrib_NoCloak"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"9908"
+		{
+			"name"	"no_fixed_spread"
+			"attribute_class"	"fixed_shot_pattern"
+			"description_string"	"#Attrib_NoFixedSpread"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		
+		// Renaissance Revival, a Medieval-Mode Weapons Pack
+		// Version 1.0
+		// Made by Yakibomb
+		
+		"30000"
+		{
+			"name"	"hidden attr"
+			"attribute_class"	"obsolete"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30001"
+		{
+			"name"	"maxammo metal reduced not active"
+			"attribute_class"	"mult_maxammo_metal"
+			"description_string"	"%s1% max metal while weapon is not active"	//description string doesn't work as of 2.0.3
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30002"
+		{
+			"name"	"mod ammo per shot percentage"
+			"attribute_class"	"mod_ammo_per_shot"
+			"description_string"	"#Attrib_AmmoPerShot"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30003"
+		{
+			"name"	"provide on active HIDDEN"
+			"attribute_class"	"provide_on_active"
+			"description_string"	"#Attrib_ProvideOnActive"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
+		}
+		"30004"
+		{
+			"name"	"dmg taken reduced"
+			"attribute_class"	"mult_dmgtaken"
+			"description_string"	"#Attrib_DmgTaken_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30005"
+		{
+			"name"	"UNIQUE wep switch speed reduced"
+			"attribute_class"	"mult_deploy_time"
+			"description_string"	"#Attrib_DeployTime_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30006"
+		{
+			"name"	"dmg from melee reduced DISPLAY ONLY"
+			"description_string"	"#Attrib_DmgFromMelee_Increased"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30007"
+		{
+			"name"	"UNIQUE melee range multiplier"
+			"attribute_class"	"melee_range_multiplier"
+			"description_string"	"#Attrib_MeleeRangeMultiplier"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30008"
+		{
+			"name"	"UNIQUE dmg from ranged increased"
+			"attribute_class"	"dmg_from_ranged"
+			"description_string"	"#Attrib_DmgFromRanged_Reduced"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30009"
+		{
+			"name"	"UNIQUE single wep deploy time increased"
+			"attribute_class"	"mult_switch_from_wep_deploy_time"
+			"description_string"	"#Attrib_DeployTime_Increased"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"negative"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15029"
+		"30010"
 		{
-			"name"					"cannot provide civ minicrit"
-			"description_string"	"Cannot provide Offense boost to allies"					// I'm not really sure about the wording. TF2C Team hasn't really given the Alt-Fire Boost a proper name, so I figure this is most immediately obvious to Players
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15030"
-		{
-			"name"					"cannot provide civ radius"
-			"description_string"	"Cannot provide Radius boost to allies"						// ...cont. from above, they do call this "Morale Boost" (only sometimes) but I feel that's not intuitive at all for knowing it's the radial, defensive boost. Aaargh!!
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15031"
-		{
-			"name"					"flares explode"
-			"description_string"	"Flares explode on contact with world"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		// Update v1.7.5
-		"15032"
-		{
-			"name"					"upgrade rate increase"
-			"attribute_class"		"upgrade_rate_mod"
-			"description_string"	"+%s1% faster upgrade rate"			
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15033"
-		{
-			"name"					"mod weapon chainsaw"
-			"description_string"	"Attack at close-range with a chainsaw"
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15034"
-		{
-			"name"					"aiming movespeed fullspeed"
-			"attribute_class"		"mult_player_aiming_movespeed"
-			"description_string"	"Move at full speed while aiming"
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15035"
-		{
-			"name"					"mod custom decal"
-			"description_string"	"Current Decal: Team Pride"									// Side-note; I can't yet make it accept arbitrary text for a variable, only numbers. I'd like to have the Current Decal field be editable!
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		// Update v2.0.0
-		"15036"
-		{
-			"name"					"mod weapon longjump"
-			"description_string"	"Primary Fire: Leap away with a Long Jump!"
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15037"
-		{
-			"name"					"health no regen"
-			"attribute_class"		"add_health_regen"
-			"description_string"	"No health regeneration"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15038"
-		{
-			"name"					"boost targets enemies text"
-			"attribute_class"		"add_civ_boost_enemies"
-			"description_string"	"Boost targets enemies instead of allies"					// Maybe need to reword this to specify Alt-Fire Boost...
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15039"
-		{
-			"name"					"haste on kill with time"
-			"description_string"	"On Kill: Gain Haste for %s1 seconds"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15040"
-		{
-			"name"					"dmg push force to stickies increased"
-			"attribute_class"		"mult_dmg_push_force_to_stickies"
-			"description_string"	"+%s1% push force to enemy stickybombs"						// This IS a property of the stock AA Gun, but it's unlisted.
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		// Update v2.1.5
-		"15041"
-		{
-			"name"					"move speed penalty while cloaked"
-			"attribute_class"		"mult_player_movespeed_cloaked"
-			"description_string"	"%s1% slower move speed while cloaked"
+			"name"	"UNIQUE melee attack rate penalty"
+			"attribute_class"	"mult_postfiredelay"
+			"description_string"	"#Attrib_MeleeRate_Negative"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"negative"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15042"
+		"30011"
 		{
-			"name"					"bullets ricochet"
-			"description_string"	"Shots ricochet off surfaces up to %s1 times!"				// Language intentionally ambiguous in case they ever let normal bullets ricochet
+			"name"	"UNIQUE uber duration reduced DISPLAY ONLY"
+			"description_string"	"#Attrib_PowerupDuration"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15043"
+		"30012"
 		{
-			"name"					"weapon fires nails"
-			"description_string"	"Fires high-speed nails"									// I dunno, these types technically should be neutral but I just like them being blue text
+			"name"	"UNIQUE uber duration HIDDEN"
+			"attribute_class"	"add_uber_time"
+			"description_string"	"#Attrib_UberDurationBonus"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
-		"15044"
+		"30013"
 		{
-			"name"					"weapon fires lasers"
-			"description_string"	"Fires high-speed lasers"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15045"
-		{
-			"name"					"damage at range increased"
-			"description_string"	"Long distance hits deal +%s1% more damage"
+			"name"	"UNIQUE effect bar recharge rate penalty"
+			"attribute_class"	"effectbar_recharge_rate"
+			"description_string"	"#Attrib_EffectBarRechargeRateIncreased"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15046"
+		"30014"
 		{
-			"name"					"minicrit vs outlined players"
-			"attribute_class"		"single_minicrit_vs_playercond_no_dot"
-			"description_string"	"100% mini-crits vs outlined players"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15047"
-		{
-			"name"					"faster weapon draw speed"
-			"attribute_class"		"mult_single_wep_deploy_time"								// Simplified language since all these weapon switch / draw attributes are worded so awfully. Just abysmal to understand at a glance.
-			"description_string"	"+%s1% faster weapon draw speed"							// "Draw" makes it clearer this refers to the act of pulling your weapon out. Draw a gun! Nobody says they "deploy" a gun, blimey...
+			"name"	"UNIQUE medic regen penalty DISPLAY ONLY"
+	//		"attribute_class"	"add_health_regen"
+			"description_string"	"#Attrib_MedicRegenPenalty"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15048"
+		"30015"
 		{
-			"name"					"slower weapon draw speed"
-			"attribute_class"		"mult_single_wep_deploy_time"
-			"description_string"	"%s1% slower weapon draw speed"
+			"name"	"absolutely no healing comes from this weapon whatsoever DISPLAY ONLY"
+			"attribute_class"	"obsolete"
+			"description_string"	"#Attrib_HealRate_Negative"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		// Update v2.2.5
-		"15049"
+		"30016"
 		{
-			"name"					"set tripmine conc tranq"
-			"description_string"	"Lay up to 3 tripmines that concuss and
-tranquilize nearby enemies for %s1s"															// Sadly I can only have one variable per stat...
+			"name"	"can headshot DISPLAY ONLY"
+			"attribute_class"	"obsolete"
+			"description_string"	"#Attrib_RevolverUseHitLocations"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15050"
+		"30017"
 		{
-			"name"					"mine detection radius decreased"
-			"attribute_class"		"mult_proxymine_radius"
-			"description_string"	"%s1% smaller mine activation radius"						// "Mine" is apt I think, it helps it fit in a small text footprint and is only relevant for proximity -mines- anyway
+			"name"	"UNIQUE ubercharge overheal rate bonus DISPLAY ONLY"
+			"description_string"	"#Attrib_OverhealUberchargeRate_Negative"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15051"
+		"30018"
 		{
-			"name"					"mine detection radius increased"
-			"attribute_class"		"mult_proxymine_radius"
-			"description_string"	"+%s1% larger mine activation radius"
+			"name"	"UNIQUE metal_pickup_decreased HIDDEN"
+			"attribute_class"	"mult_metal_pickup"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30019"
+		{
+			"name"	"UNIQUE bullets per shot bonus HIDDEN"
+			"attribute_class"	"mult_bullets_per_shot"
+			"description_string"	"#Attrib_BulletsPerShot_Bonus"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30020"
+		{
+			"name"	"UNIQUE mod use metal ammo type HIDDEN"
+			"attribute_class"	"mod_use_metal_ammo_type"
+			"description_string"	"#Attrib_UseMetalAmmoType"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"1"
+		}
+		"30021"
+		{
+			"name"	"UNIQUE engy building health penalty"
+			"attribute_class"	"mult_engy_building_health"
+			"description_string"	"#Attrib_EngyBuildingHealthPenalty"
+			"description_format"	"value_is_percentage"
+			"hidden"	"0"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30022"
+		{
+			"name"	"UNIQUE engineer sentry build rate multiplier HIDDEN"
+			"attribute_class"	"sentry_build_rate_multiplier"
+			"description_string"	"#Attrib_Sentry_Build_Rate"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30023"
+		{
+			"name"	"UNIQUE engineer teleporter build rate multiplier HIDDEN"
+			"attribute_class"	"teleporter_build_rate_multiplier"
+			"description_string"	"#Attrib_Teleporter_Build_Rate"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30024"
+		{
+			"name"	"UNIQUE engineer dispenser build rate multiplier HIDDEN"
+			"attribute_class"	"dispenser_build_rate_multiplier"
+			"description_string"	"#Attrib_Dispenser_Build_Rate"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30025"
+		{
+			"name"	"UNIQUE pda can remote deploy penalty"
+			"attribute_class"	"pda_remote_deploy"
+			"description_string"	"#Attrib_RemoteDeploy"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
+		}
+		"30026"
+		{
+			"name"	"UNIQUE building cost reduction additive"
+			"attribute_class"	"building_cost_reduction"
+			"description_string"	"#Attrib_BuildingCostReduction"
+			"description_format"	"value_is_additive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30027"
+		{
+			"name"	"UNIQUE headshot damage increase HIDDEN"
+			"attribute_class"	"headshot_damage_modify"
+			"description_string"	"#Attrib_HeadshotDamageIncrease"
+			"description_format"	"value_is_percentage"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30028"
+		{
+			"name"	"UNIQUE upgrade rate decrease HIDDEN"
+			"attribute_class"	"upgrade_rate_mod"
+			"description_string"	"#Attrib_UpgradeRate_Decreased"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15052"
+		"30029"
 		{
-			"name"					"mod crit while airborne short"
-			"attribute_class"		"crit_while_airborne"
-			"description_string"	"Deals crits while blast or jumppad jumping"
-			"description_format"	"value_is_additive"											// Also might need to adjust "jumppad" to "jump pad", but that also feels really long-winded. Jumppad Jump. Jump Pad Jump...
-			"effect_type"			"positive"
-		}
-		"15053"
-		{
-			"name"					"crit vs tranqed players"
-			"attribute_class"		"single_crit_vs_playercond_no_dot"
-			"description_string"	"100% critical hit vs tranquilized players"
+			"name"	"UNIQUE sentry shoots projectile"
+			"attribute_class"	"set_sentry_projectile"
+			"description_string"	"#Attrib_SentryProjectile"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15054"
+		"30030"
 		{
-			"name"					"mod flechette launcher"
-			"description_string"	"Fires timed explosive Flechettes"
+			"name"	"UNIQUE teleporter is jump pad"
+			"attribute_class"	"set_teleporter_mode"
+			"description_string"	"#Attrib_TeleporterJumpPad"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15055"
+		"30031"	// Syntax: "<condition id> <duration>" e.g. "5 2.0"
 		{
-			"name"					"flechette no stick no det"
-			"description_string"	"Flechettes do not stick to players, and
-cannot be manually detonated"
+			"name"	"UNIQUE add condition to self on hit"
+			"attribute_class"	"add_onhit_addcond_self"
+			"attribute_type"	"string"
 			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"neutral"
 		}
-		"15056"
+		"30032"	// Syntax: "<condition id> <duration>" e.g. "5 2.0"
 		{
-			"name"					"medic shotgun placeholder"
-			"description_string"	"(Schwienhunds... It still doesn't fire syringes)"			// This is written in-character, I think it's funny
+			"name"	"UNIQUE addcond speedboost to self on hit"
+			"attribute_class"	"add_onhit_addcond_self"
+			"attribute_type"	"string"
 			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
+			"description_string"	"#Attrib_SpeedBoostOnHit"
+			"hidden"	"0"
+			"effect_type"	"positive"
 		}
-		"15057"
+		"30033"
 		{
-			"name"					"dispenser rate increased"
-			"attribute_class"		"mult_dispenser_rate"
-			"description_string"	"Dispenser generates %s1% more resources"					// Wording this was, and still is, tricky, since it's extremely ambiguous how this attribute works.
+			"name"	"UNIQUE mod reload full time"	//unused in stock; is this implemented?
+			"attribute_class"	"add_reload_refill_time"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
+		}
+		"30034"
+		{
+			"name"	"UNIQUE crit chance multiplier"
+			"attribute_class"	"mult_crit_chance"
+			"description_string"	"#Attrib_CritChance_Positive"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15058"
+		"30035"
 		{
-			"name"					"engy dispenser radius decreased"
-			"attribute_class"		"mult_dispenser_radius"
-			"description_string"	"%s1% lower dispenser range"		
+			"name"	"UNIQUE Construction rate decreased HIDDEN"
+			"attribute_class"	"mult_construction_value"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15059"
+		"30036"
 		{
-			"name"					"dispenserizer dispenserizes"
-			"description_string"	"Fires explosive Mini-Dispensers"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15060"
-		{
-			"name"					"minidisp no regenerate"
-			"description_string"	"Mini-Dispenser cannot heal or restock allies"				// Singular since you might imagine this could be used as legitimate text for a real Mini-Dispenser's downside stat, as a building
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15061"
-		{
-			"name"					"explosive bolts"
-			"description_string"	"Fires explosive crossbow bolts"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15062"
-		{
-			"name"					"mod maxlevel killed revenge"
-			"description_string"	"When a Lvl. 3 Building of yours is destroyed
-by an enemy, gain %s1s of Revenge Crits!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15063"
-		{
-			"name"					"weapon fires baseballs"
-			"description_string"	"Fires high-speed baseballs"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		// Update v2.3.5
-		"15064"
-		{
-			"name"					"radiogun noisemaker"
-			"description_string"	"Fires a device that plays a wide selection
-of important noises where it lands"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15065"
-		{
-			"name"					"crit vs healbeam players"
-			"attribute_class"		"or_crit_vs_playercond"
-			"description_string"	"100% critical hit vs players being healed
-by Medigun or Dispenser beams"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15066"
-		{
-			"name"					"health regen short"
-			"attribute_class"		"add_health_regen"
-			"description_string"	"+%s1 health regenerated per second"						// Text is too long normally. "... on wearer" doesn't say too much especially if it's not actually on-wearer because of a provide on active
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15067"
-		{
-			"name"					"health drain short"
-			"attribute_class"		"add_health_regen"
-			"description_string"	"%s1 health drained per second"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15068"
-		{
-			"name"					"mod enemy downwards knockback"
-			"description_string"	"On Hit: Send foes cratering downwards!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15069"
-		{
-			"name"					"rocket barrage"
-			"description_string"	"Unleash a barrage of %s1 rockets at once"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15070"
-		{
-			"name"					"weapon fires molotov"
-			"description_string"	"Fires explosive molotov cocktails"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15071"
-		{
-			"name"					"crit vs teleported players"
-			"attribute_class"		"or_crit_vs_playercond"
-			"description_string"	"100% critical hit vs teleported players"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15072"
-		{
-			"name"					"crit vs katana players"
-			"attribute_class"		"single_crit_vs_playercond_no_dot"
-			"description_string"	"100% critical hit vs other Katana wielders"				// Moved the 2nd part of the string to just be part of the description
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		// Update v2.5.0
-		"15073"
-		{
-			"name"					"set weapon flamerocket"
-			"description_string"	"Fires a continuous stream of flame rockets"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15074"
-		{
-			"name"					"sapper self-destruct"
-			"description_string"	"Sapper self-destructs after %s1s"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15075"
-		{
-			"name"					"headtaker harvester text"
-			"description_string"	"Light your enemies' souls ablaze, to build up
-progress towards a guaranteed critical hit!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15076"
-		{
-			"name"					"minicrit vs players below feet"
-			"attribute_class"		"single_minicrit_vs_playercond_no_dot"
-			"description_string"	"100% mini-crits vs players below you"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15077"
-		{
-			"name"					"defense boost on kill with time"
-			"description_string"	"On Kill: Gain a Def. Buff for %s1 seconds"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15078"
-		{
-			"name"					"fuse time bonus"
-			"attribute_class"		"fuse_mult"
-			"description_string"	"%s1% fuse time on grenades"		
+			"name"	"UNIQUE Repair rate decreased HIDDEN"
+			"attribute_class"	"mult_repair_value"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15079"
+		"30037"
 		{
-			"name"					"fuse time penalty"
-			"attribute_class"		"fuse_mult"
-			"description_string"	"+%s1% fuse time on grenades"
+			"name"	"UNIQUE upgrade rate decrease HIDDEN"
+			"attribute_class"	"upgrade_rate_mod"
 			"description_format"	"value_is_inverted_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15080"
+		"30038"
 		{
-			"name"					"khopesh climber fling"
-			"description_string"	"On Swing: Gain a small boost forwards!"
+			"name"	"UNIQUE upgrade rate decrease additive HIDDEN"
+			"attribute_class"	"upgrade_rate_mod"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
-		"15081"
+		"30039"
 		{
-			"name"					"tmp dmgbonus minicrit"
-			"description_string"	"On Hit: Gain temporary mini-crits"							// No time specified since "temporary" already implies a very short time. "Temporary for 2s" is a little bit of a moot statement, see?
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"name"	"crit vs playercond HIDDEN"
+			"attribute_class"	"or_crit_vs_playercond"
+			"description_format"	"value_is_or"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15082"
+		"30040"
 		{
-			"name"					"no overheal"
-			"attribute_class"		"mult_medigun_overheal_amount"
-			"description_string"	"Cannot overheal patients"
+			"name"	"UNIQUE projectile spread angle HIDDEN"
+			"attribute_class"	"projectile_spread_angle"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15083"
+		"30041"
 		{
-			"name"					"thermal thruster nowp"
-			"description_string"	"Blast off and fly using your jetpack!"
+			"name"	"UNIQUE mult decloak rate HIDDEN"
+			"attribute_class"	"mult_decloak_rate"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15084"
+		"30042"
 		{
-			"name"					"jumper no damage"
-			"description_string"	"Weapon deals no damage"
+			"name"	"UNIQUE mult cloak rate HIDDEN"
+			"attribute_class"	"mult_cloak_rate"
 			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15085"
+		"30043"
 		{
-			"name"					"jumper disable flags"
-			"description_string"	"Unable to carry active Flags or Intel"		
-			"description_format"	"value_is_additive"											// The wording on this was annoying since Intelligence Briefcase is pointlessly longform. "Intel" and "Flag" suffice.
-			"effect_type"			"negative"
-		}
-		"15086"
-		{
-			"name"					"jumper disable capture"
-			"description_string"	"Unable to capture or defend Objectives"					// Left ambiguous since Control Points aren't the only kind of objective that can be captured or defended. Payloads and Capture Zones also count
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15087"
-		{
-			"name"					"brick text nowp"
-			"attribute_class"		"bleeding_duration"
-			"description_string"	"Throw at enemies to bludgeon them! (%s1s)
-That's gotta hurt in the morning"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15088"
-		{
-			"name"					"voices from below scout"
-			"description_string"	"Voices from Below: Haunted by the
-soul of a twitchy hooligan"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15089"
-		{
-			"name"					"wrench current update number"
-			"description_string"	"Wrench no. %s1"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15090"
-		{
-			"name"					"retired weapon"
-			"description_string"	"A nostalgic feeling washes over you..."					// '...Why not take this old keepsake for a spin?'
-			"custom_color"			"225 209 0 255"												// Yellow text! This is the limited item text color
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15091"
-		{
-			"name"					"icannon proj spread awful hack"
-			"description_string"	"+7 degrees random projectile deviation"					// Terrible hack since that weapon has no more space to fit attributes...
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15092"
-		{
-			"name"					"cannot backstab"
-			"description_string"	"Cannot backstab"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15093"
-		{
-			"name"					"centerfire projectile positive"
-			"attribute_class"		"centerfire_projectile"
-			"description_string"	"Projectile always fires from the center"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15094"
-		{
-			"name"					"cannot do engi stuff"										// Not needed for anything yet, I've been pretty good about this!
-			"description_string"	"Cannot upgrade, repair, or speed
-up construction on friendly buildings"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15095"
-		{
-			"name"					"cannot heal"
-			"description_string"	"Cannot heal patients"										// "patients" implies Medic, but it's generally just consistency, most healing conds tend to reference patients explicitly as well
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15096"
-		{
-			"name"					"throwable has knockback"
-			"description_string"	"Throw at enemies to knock them back!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15097"
-		{
-			"name"					"crit vs outlined players"
-			"attribute_class"		"single_crit_vs_playercond_no_dot"
-			"description_string"	"100% critical hit vs outlined players"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15098"
-		{
-			"name"					"sun on a stick combined"
-			"attribute_class"		"or_crit_vs_playercond"
-			"description_string"	"100% critical hit vs burning, stunned, and
-recently-teleported players"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15099"
-		{
-			"name"					"defense boost on eat with time"
-			"description_string"	"On Drink: Gain a Def. Buff for %s1 seconds"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15100"
-		{
-			"name"					"no afterburn"
-			"attribute_class"		"mult_wpn_burntime"
-			"description_string"	"No afterburn"
+			"name"	"UNIQUE cloak regen rate HIDDEN"
+			"attribute_class"	"mult_cloak_meter_regen_rate"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15101"
+		"30044"
 		{
-			"name"					"minicrit on objective simple"
-			"attribute_class"		"mini_crit_on_objectives"
-			"description_string"	"Deals mini-crits when you or the enemy
-are near active objectives or carrying flags"													// Simplified language since original was really long-winded
-			"description_format"	"value_is_additive"											// Functionally it applies to either you or the enemy being on or near an objective (point, flag, vip), so that's what I wrote. Might exclude some weird edge-case...
-			"effect_type"			"positive"
-		}
-		"15102"
-		{
-			"name"					"airblast refire time decreased"
-			"attribute_class"		"mult_airblast_refire_time"
-			"description_string"	"%s1% shorter airblast cooldown"
+			"name"	"UNIQUE mult cloak meter consume rate HIDDEN"
+			"attribute_class"	"mult_cloak_meter_consume_rate"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15103"
+		"30045"
 		{
-			"name"					"airblast refire time increased"
-			"attribute_class"		"mult_airblast_refire_time"
-			"description_string"	"%s1% longer airblast cooldown"
+			"name"	"UNIQUE move speed bonus while cloaked HIDDEN"
+			"attribute_class"	"mult_player_movespeed_cloaked"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15104"
+		"30046"
 		{
-			"name"					"deflection size increased"
-			"attribute_class"		"deflection_size_multiplier"
-			"description_string"	"%s1% larger airblast range"
+			"name"	"crit vs not playercond HIDDEN"
+			"attribute_class"	"or_crit_vs_not_playercond"
+			"description_format"	"value_is_or"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30047"
+		{
+			"name"	"UNIQUE tranq on hit HIDDEN"
+			"attribute_class"	"mod_tranq_onhit"
+			"description_format"	"value_is_additive"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
+		}
+		"30048"
+		{
+			"name"	"UNIQUE maxammo metal HIDDEN"
+			"attribute_class"	"mult_maxammo_metal"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"armory_Desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
-		"15105"
+		"30049"
 		{
-			"name"					"deflection size decreased"
-			"attribute_class"		"deflection_size_multiplier"
-			"description_string"	"%s1% smaller airblast range"
+			"name"	"UNIQUE maxammo grenades1 HIDDEN"
+			"attribute_class"	"mult_maxammo_grenades1"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"armory_Desc"	"on_wearer"
+			"stored_as_integer"	"0"
 		}
-		"15106"
+		"30050"
 		{
-			"name"					"weapon fires bricks"
-			"description_string"	"Fires explosive bricks!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15107"
-		{
-			"name"					"taser heal text"
-			"description_string"	"Hit and heal allies by %s1% at max charge"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15108"
-		{
-			"name"					"rush order combined"
-			"description_string"	"Faster dispenser and teleporter build speed"				// I'd list how much faster, but that quickly clogs up the description...
+			"name"	"UNIQUE mult dispenser rate"
+			"attribute_class"	"mult_dispenser_rate"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15109"
+		"30051"
 		{
-			"name"					"pda default desc"
-			"description_string"	"Build a Sentry, Dispenser, and 2 Teleporters"				// Dummy text for non-building PDAs as a holdover
+			"name"	"UNIQUE effect bar recharge rate HIDDEN"
+			"attribute_class"	"effectbar_recharge_rate"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"neutral"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15110"
+		"30052"
 		{
-			"name"					"brick explodes text"
-			"description_string"	"Brick explodes after a short delay"						// This used to have text, but it didn't make it to the final TF_Language.txt, so re-added
+			"name"	"UNIQUE stickybomb charge rate HIDDEN"
+			"attribute_class"	"stickybomb_charge_rate"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"1"
+			"effect_type"	"positive"
+		}
+		"30053"
+		{
+			"name"	"UNIQUE explode on damage"
+			"attribute_class"	"explode_on_damage"
 			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
+			"hidden"	"1"
+			"effect_type"	"positive"
+			"armory_Desc"	"on_hit"
+			"stored_as_integer"	"0"
 		}
-		"15111"
+		"30054"
 		{
-			"name"					"heal on kill nonspecific"
-			"attribute_class"		"heal_on_kill"
-			"description_string"	"Health restored slightly on kill"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15112"
-		{
-			"name"					"infinite brick supply"
-			"attribute_class"		"mult_maxammo_grenades1"
-			"description_string"	"Infinite supply of bricks on wearer"
+			"name"	"UNIQUE crit mod DISPLAY ONLY"
+			"description_string"	"#Attrib_CritChance"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15113"
+		"30055"
 		{
-			"name"					"brick explodes hack fix"
-			"attribute_class"		"energy_weapon_no_ammo"
-			"description_string"	"Brick explodes after a short delay"						// SCUFFED. To fix civ brick cutting off desc. text...
+			"name"	"UNIQUE add teleporter cost"
+			"attribute_class"	"mod_teleporter_cost"
+			"description_string"	"#Attrib_TeleporterBuildCost"
 			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15114"
+		"30056"
 		{
-			"name"					"noisemaker"
-			"description_string"	"On Use: Make some noise!"
+			"name"	"UNIQUE mult dispenser rate additive"
+			"attribute_class"	"mult_dispenser_rate"
 			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"hidden"	"1"
+			"effect_type"	"negative"
+			"stored_as_integer"	"0"
 		}
-		"15115"
+		"30057"
 		{
-			"name"					"iridescent weapon"
-			"description_string"	"Iridescence: Changes sheen based on team"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
+			"name"	"UNIQUE rocket gravity HIDDEN"
+			"attribute_class"	"mod_rocket_gravity"
+			"description_format"	"value_is_additive_percentage"
+			"hidden"	"1"
+			"effect_type"	"neutral"
+			"stored_as_integer"	"0"
 		}
-		"15116"
+		"30058"
 		{
-			"name"					"crit instant kill user"
-			"attribute_class"		"mult_dmgtaken_from_crit"
-			"description_string"	"Critical hits will instantly kill you"
-			"description_format"	"value_is_additive"											// Additive for a trick
-			"effect_type"			"negative"
+			"name"	"UNIQUE melee attack rate bonus"
+			"attribute_class"	"mult_postfiredelay"
+			"description_string"	"#Attrib_MeleeRate_Positive"
+			"description_format"	"value_is_inverted_percentage"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"stored_as_integer"	"0"
 		}
-		"15117"
+		"30059"
 		{
-			"name"					"melee range no buildings"
-			"description_string"	"Melee range does not apply to buildings"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15118"
-		{
-			"name"					"melee range no backstab"
-			"description_string"	"Melee range does not apply to backstabs"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15119"
-		{
-			"name"					"no blast damage kill"
-			"description_string"	"No blast damage taken on a successful kill"
-			"attribute_type"		"string"													// TO-DO: This needs to be here to work. Workarounds?
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15120"
-		{
-			"name"					"gas passer nowp"
-			"description_string"	"Throw at enemies to light them on fire!"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15121"
-		{
-			"name"					"maxammo grenades2 increased text"
-			"attribute_class"		"mult_maxammo_grenades2"
-			"description_string"	"+%s1% max grenades on wearer"
+			"name"	"UNIQUE move speed bonus when active"
+			"attribute_class"	"mult_player_movespeed"
+			"description_string"	"#Attrib_SpeedBoostWhenActive"
 			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15122"
-		{
-			"name"					"hide_attrib_additive"										// Yes... It unfortunately only occurred to me to make this, -AFTER- I did everything else. I may be a bit stupid.
-			"attribute_class"		"DISPLAY_ONLY"												// These are only for backend purposes. You can replace them with any similar stock attribute of the same kind, doesn't matter.
-			"description_format"	"value_is_additive"
-			"hidden"				"1"
-		}
-		"15123"
-		{
-			"name"					"hide_attrib_percentage"
-			"attribute_class"		"DISPLAY_ONLY"
-			"description_format"	"value_is_percentage"
-			"hidden"				"1"
-		}
-		// Update v2.6.5
-		"15124"
-		{
-			"name"					"weapon cook projectile mode"
-			"attribute_class"		"grenade_launcher_mortar_mode"
-			"description_string"	"Hold fire to light the fuse! Grenades will
-explode quicker the longer you hold"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15125"
-		{
-			"name"					"weapon explodes"
-			"description_string"	"On Overcharge: Blow yourself up. Idiot."
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15126"
-		{
-			"name"					"stickies dont stick text"
-			"attribute_class"		"stickies_dont_stick"
-			"description_string"	"Stickybombs don't stick to surfaces"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15137"
-		{
-			"name"					"health from lunchbox increased"
-			"attribute_class"		"lunchbox_healing_scale"
-			"description_string"	"+%s1% healing effect"
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15138"
-		{
-			"name"					"health from lunchbox decreased"
-			"attribute_class"		"lunchbox_healing_scale"
-			"description_string"	"%s1% healing effect"
-			"description_format"	"value_is_percentage"
-			"effect_type"			"negative"
-		}
-		"15139"
-		{
-			"name"					"projectile detonates with rocket"
-			"attribute_class"		"mirv_detonate_with_rocket_radius"
-			"description_string"	"Rockets will detonate grenades on contact"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15140"
-		{
-			"name"					"grenade no autodet"
-			"description_string"	"You forgot to pull the pins first, stupid"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		"15141"
-		{
-			"name"					"stealth on kill with time"
-			"description_string"	"On Kill: Become Stealthed for %s1 seconds"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15142"
-		{
-			"name"					"attack while cloaked"
-			"description_string"	"Can attack while fully cloaked"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		// Update v2.7.5
-		"15143"
-		{
-			"name"					"medigun charge is invuln"
-			"description_string"	"ÜberCharge grants invulnerability"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15144"
-		{
-			"name"					"uber duration increased"
-			"attribute_class"		"add_uber_time_active"
-			"description_string"	"+%s1% ÜberCharge duration"
-			"description_format"	"value_is_percentage"
-			"effect_type"			"positive"
-		}
-		"15145"
-		{
-			"name"					"medigun charge is push buff neutral"						// Parity with Kritzkrieg, Live TF2 QF & Vacc
-			"attribute_class"		"set_charge_type"
-			"description_string"	"#Attrib_MedigunChargeIsPushBuff"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15146"
-		{
-			"name"					"toolgun disintegrates"
-			"description_string"	"Primary Fire: Remover Tool"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15147"
-		{
-			"name"					"toolgun makes sharks"
-			"description_string"	"Alt-Fire: Toggle Adv. Duplicator ON / OFF"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15148"
-		{
-			"name"					"secret weapon"
-			"description_string"	"Something secret this way comes..."
-			"custom_color"			"165 15 121 255"											// Magenta text! This is the Valve item quality color
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15149"
-		{
-			"name"					"explosive arrows"
-			"description_string"	"Fires explosive-tipped arrows"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15150"
-		{
-			"name"					"tmp dmgbonus minicrit kill"
-			"description_string"	"On Kill: Gain temporary mini-crits"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15151"
-		{
-			"name"					"sentry target override text"
-			"attribute_class"		"sentry_target_override_on_hit"
-			"description_string"	"On Hit: Sentry switches targets to enemy"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15152"
-		{
-			"name"					"vision text generic"
-			"description_string"	"On Equip: Breathe, and see things differently"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15153"
-		{
-			"name"					"medic syringe shotgun"
-			"attribute_class"		"set_burstfire"
-			"description_string"	"Shoot a burst of %s1 syringes at once"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15154"
-		{
-			"name"					"mod weapon autoreload"
-			"attribute_class"		"use_ammo_meter"
-			"description_string"	"Weapon passively reloads over time"
-			"description_format"	"value_is_additive"
-			"effect_type"			"positive"
-		}
-		"15155"
-		{
-			"name"					"sentry backpack"
-			"attribute_class"		"mod_max_primary_clip_override"
-			"description_string"	"Take control of an automatic turret"
-			"description_format"	"value_is_additive"
-			"effect_type"			"neutral"
-		}
-		"15156"
-		{
-			"name"					"lunchbox consumed on use"
-			"attribute_class"		"lunchbox_force_cooldown"
-			"description_string"	"Item is consumed after use and recharges"
-			"description_format"	"value_is_additive"
-			"effect_type"			"negative"
-		}
-		// Community Contributors: Credit Attribs
-		"21000"
-		{
-			"name"					"comm weapon yaki"
-			"description_string"	"Contributed by: Yakibomb"
-			"custom_color"			"112 176 74 255"
-		}
-		"21001"
-		{
-			"name"					"comm weapon kris"
-			"description_string"	"Contributed by: Private Polygon"
-			"custom_color"			"112 176 74 255"
-		}
-		"21002"
-		{
-			"name"					"comm weapon azzy basil"
-			"description_string"	"Contributed by: azzy, OCsonic"
-			"custom_color"			"112 176 74 255"
-		}
-		"21003"
-		{
-			"name"					"comm weapon colrot"
-			"description_string"	"Contributed by: Colrot"
-			"custom_color"			"112 176 74 255"
+			"hidden"	"0"
+			"effect_type"	"positive"
+			"armory_Desc"	"on_active"
+			"stored_as_integer"	"0"
 		}
 	}
 }
